@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static camp.nextstep.edu.kitchenpos.model.CommonHelper.toPrice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -116,9 +117,5 @@ public class MenuBoTest {
         assertThat(menuBo.list())
                 .isNotNull()
                 .hasSize(menus.size());
-    }
-
-    private BigDecimal toPrice(int price) {
-        return BigDecimal.valueOf(price);
     }
 }
