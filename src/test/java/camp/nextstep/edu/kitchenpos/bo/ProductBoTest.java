@@ -1,6 +1,7 @@
 package camp.nextstep.edu.kitchenpos.bo;
 
 import camp.nextstep.edu.kitchenpos.dao.ProductDao;
+import camp.nextstep.edu.kitchenpos.model.CurrencyHelper;
 import camp.nextstep.edu.kitchenpos.model.Product;
 import camp.nextstep.edu.kitchenpos.model.ProductTest;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.List;
 
-import static camp.nextstep.edu.kitchenpos.model.CommonHelper.toPrice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -32,7 +32,7 @@ public class ProductBoTest {
     @Test
     void 사용자는_상품을_등록할_수_있다() {
         // given
-        final Product product = ProductTest.create(toPrice(1));
+        final Product product = ProductTest.create(CurrencyHelper.ONE);
 
         // when
         when(productDao.save(any())).thenReturn(product);
@@ -46,7 +46,7 @@ public class ProductBoTest {
     @Test
     void 상품_가격은_0원_이상이다() {
         // given
-        final Product product = ProductTest.create(toPrice(-1));
+        final Product product = ProductTest.create(CurrencyHelper.NEGATIVE);
 
         // when
         // then
@@ -58,8 +58,8 @@ public class ProductBoTest {
     void 사용자는_전체_상품_목록을_조회할_수_있다() {
         // given
         final List<Product> products = Arrays.asList(
-                ProductTest.create(toPrice(1)),
-                ProductTest.create(toPrice(2))
+                ProductTest.create(CurrencyHelper.ONE),
+                ProductTest.create(CurrencyHelper.TWO)
         );
 
         // when

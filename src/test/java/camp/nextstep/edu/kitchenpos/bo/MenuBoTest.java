@@ -13,12 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static camp.nextstep.edu.kitchenpos.model.CommonHelper.toPrice;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -52,7 +50,7 @@ public class MenuBoTest {
     @Test
     void 사용자는_메뉴를_등록할_수_있다() {
         // given
-        final Menu menu = MenuTest.create(toPrice(0), 1L);
+        final Menu menu = MenuTest.create(CurrencyHelper.ZERO, 1L);
 
         // when
         when(menuGroupDao.existsById(anyLong())).thenReturn(true);
@@ -67,7 +65,7 @@ public class MenuBoTest {
     @Test
     void 메뉴_가격은_0원_이상이다() {
         // given
-        final Menu menu = MenuTest.create(toPrice(-1), 1L);
+        final Menu menu = MenuTest.create(CurrencyHelper.NEGATIVE, 1L);
 
         // when
         // then
@@ -78,7 +76,7 @@ public class MenuBoTest {
     @Test
     void 등록되어_있는_메뉴_그룹_아이디를_가진다() {
         // given
-        final Menu menu = MenuTest.create(toPrice(0), 1L);
+        final Menu menu = MenuTest.create(CurrencyHelper.ZERO, 1L);
 
         // when
         // then
@@ -89,9 +87,9 @@ public class MenuBoTest {
     @Test
     void 메뉴의_가격은_메뉴_상품_목록의_가격_총합보다_클_수_없다() {
         // given
-        final Product product = ProductTest.create(toPrice(400));
+        final Product product = ProductTest.create(CurrencyHelper.from(400));
         final List<MenuProduct> menuProducts = Arrays.asList(MenuProductTest.create(1, 2));
-        final Menu menu = MenuTest.create(toPrice(1000), 1L, menuProducts);
+        final Menu menu = MenuTest.create(CurrencyHelper.ONE_THOUSAND, 1L, menuProducts);
 
         // when
         when(menuGroupDao.existsById(anyLong())).thenReturn(true);
@@ -106,8 +104,8 @@ public class MenuBoTest {
     void 사용자는_전체_메뉴_목록를_조회할_수_있다() {
         // given
         final List<Menu> menus = Arrays.asList(
-                MenuTest.create(toPrice(0), 1L),
-                MenuTest.create(toPrice(1), 1L)
+                MenuTest.create(CurrencyHelper.ZERO, 1L),
+                MenuTest.create(CurrencyHelper.ONE, 1L)
         );
 
         // when
