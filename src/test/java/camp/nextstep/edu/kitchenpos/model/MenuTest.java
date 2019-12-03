@@ -1,7 +1,6 @@
 package camp.nextstep.edu.kitchenpos.model;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
