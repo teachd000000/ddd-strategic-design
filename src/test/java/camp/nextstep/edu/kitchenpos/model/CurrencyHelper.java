@@ -9,7 +9,7 @@ public class CurrencyHelper {
     }
 
     public static final BigDecimal NEGATIVE = from(-1);
-    public static final BigDecimal ZERO = BigDecimal.ONE;
+    public static final BigDecimal ZERO = BigDecimal.ZERO;
     public static final BigDecimal ONE = BigDecimal.ONE;
     public static final BigDecimal TWO = from(2);
     public static final BigDecimal ONE_THOUSAND = from(1_000);

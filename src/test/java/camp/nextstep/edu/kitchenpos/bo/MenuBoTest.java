@@ -2,6 +2,7 @@ package camp.nextstep.edu.kitchenpos.bo;
 
 import camp.nextstep.edu.kitchenpos.dao.MenuDao;
 import camp.nextstep.edu.kitchenpos.dao.MenuGroupDao;
+import camp.nextstep.edu.kitchenpos.dao.MenuProductDao;
 import camp.nextstep.edu.kitchenpos.dao.ProductDao;
 import camp.nextstep.edu.kitchenpos.model.*;
 import org.junit.jupiter.api.AfterEach;
@@ -34,6 +35,9 @@ public class MenuBoTest {
 
     @Mock
     private ProductDao productDao;
+
+    @Mock
+    private MenuProductDao menuProductDao;
 
     @InjectMocks
     private MenuBo menuBo;
